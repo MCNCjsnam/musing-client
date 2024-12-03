@@ -12,12 +12,8 @@ export const ROUTES = {
     DETAIL: '/detail',
   },
 
-  // 인증 관련 라우트
-  // AUTH: {
-  //   LOGIN: '/login',
-  //   REGISTER: '/register',
-  //   FORGOT_PASSWORD: '/forgot-password',
-  // }
+  // jsnam test
+  JSNAM: '/'
 } as const;
 
 // 라우트 타입 추출 (선택사항)

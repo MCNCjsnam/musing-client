@@ -4,11 +4,14 @@ import Community from 'pages/community/Community';
 import Home from 'pages/home/Home';
 import NotFound from 'pages/notFound/NotFound';
 
+import JSNAM from 'pages/home/Jsnam';
+
 import { ROUTES } from 'shared/config/routes';
 
 export const AppRouter = () => {
   return (
     <Routes>
+      <Route path={ROUTES.JSNAM} element={<JSNAM />} />
       <Route path={ROUTES.HOME} element={<Home />} />
       <Route path={ROUTES.COMMUNITY.COMMUNITY} element={<Community />} />
       <Route path="*" element={<NotFound />} />
