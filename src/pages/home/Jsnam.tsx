@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import Card from 'widgets/card/MainCard'; // 새로 만든 Card 컴포넌트 임포트
+import Card from 'widgets/card/Card'; // 새로 만든 Card 컴포넌트 임포트
 import image1 from "app/styles/img/image1.png";
 
 // 전체 컨테이너 스타일
