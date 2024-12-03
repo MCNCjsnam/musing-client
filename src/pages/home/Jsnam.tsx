@@ -1,34 +1,33 @@
-import styled from '@emotion/styled';
-import image1 from 'app/styles/img/image1.png';
-import btn_add from 'app/styles/img/btn-add.png';
-import btn_more from 'app/styles/img/btn-more.png';
+import styled from "@emotion/styled";
+import image1 from "app/styles/img/image1.png";
+import btn_add from "app/styles/img/btn-add.png";
+import btn_more from "app/styles/img/btn-more.png";
 
-//영역
+// 전체 컨테이너 스타일
 const ContentArea = styled.div`
   width: 1280px;
   height: 100vh;
   margin: 0 auto;
   margin-left: 120px;
-
-  background-color: ${({ theme }) => theme.colors.black}; /* 배경색 */
-  color: ${({ theme }) => theme.colors.white}; /* 글자색 */
+  background-color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.white};
 `;
 
-//텍스트
+// 타이틀 스타일
 const Title = styled.h1`
   color: ${({ theme }) => theme.colors.primary1};
-
   ${({ theme }) => theme.fonts.wantedSans.H1};
 `;
 
-//카드
+// 카드 컨테이너 스타일
 const CardContainer = styled.div`
   display: flex;
-  gap: 20px; /* 카드 사이의 간격 */
-  justify-content: center; /* 카드를 중앙에 정렬 */
+  gap: 20px;
+  justify-content: center;
 `;
 
-const Card = styled.div`
+// 카드 스타일
+const CardWrapper = styled.div`
   width: 256px;
   height: 330px;
   display: flex;
@@ -36,36 +35,6 @@ const Card = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-
-  .main-image {
-    background-size: cover;
-    background-position: center;
-    border-radius: 12px;
-    width: 256px;
-    height: 256px;
-    margin-bottom: 16px;
-    transition: opacity 0.3s ease;
-  }
-
-  .btn_add, .btn_more {
-    position: absolute;
-    width: 44px;
-    height: 44px;
-    z-index: 10;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    cursor: pointer;
-  }
-
-  .btn_add {
-    bottom: 88px;
-    left: 12px;
-  }
-
-  .btn_more {
-    bottom: 268px;
-    right: 12px;
-  }
 
   &:hover .main-image {
     opacity: 0.68;
@@ -75,52 +44,78 @@ const Card = styled.div`
   &:hover .btn_more {
     opacity: 1;
   }
+`;
 
-  span { 
-    text-align: center;
+// 메인 이미지 스타일
+const MainImage = styled.img`
+  width: 256px;
+  height: 256px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 16px;
+  transition: opacity 0.3s ease;
+`;
+
+// 버튼 스타일
+const ActionButton = styled.img`
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+
+  &.btn_add {
+    bottom: 88px;
+    left: 12px;
+  }
+
+  &.btn_more {
+    bottom: 268px;
+    right: 12px;
   }
 `;
 
-const TextArea = styled.div`  
-  gap: 16px;
+// 텍스트 컨테이너 스타일
+const TextArea = styled.div`
+  text-align: center;
 `;
 
+// B2 텍스트 스타일
 const TextB2 = styled.div`
-  ${({ theme }) => theme.fonts.wantedSans.B2}; /* B2 폰트 스타일 적용 */
-  text-align: center; /* 가운데 정렬 */
+  ${({ theme }) => theme.fonts.wantedSans.B2};
 `;
 
+// B5 텍스트 스타일
 const TextB5 = styled.div`
-  ${({ theme }) => theme.fonts.wantedSans.B5}; /* B5 폰트 스타일 적용 */
+  ${({ theme }) => theme.fonts.wantedSans.B5};
   color: ${({ theme }) => theme.colors["200"]};
-  text-align: center; /* 가운데 정렬 */
-  margin-top: 3px; /* TextB2와 TextB5 사이의 간격을 3px로 설정 */
+  margin-top: 3px;
 `;
 
+// 카드 컴포넌트
+const Card = ({ image, title, subtitle }) => (
+  <CardWrapper>
+    <MainImage src={image} alt="이미지" className="main-image" />
+    <ActionButton src={btn_add} alt="추가" className="btn_add" />
+    <ActionButton src={btn_more} alt="더보기" className="btn_more" />
+    <TextArea>
+      <TextB2>{title}</TextB2>
+      <TextB5>{subtitle}</TextB5>
+    </TextArea>
+  </CardWrapper>
+);
+
+// 메인 컴포넌트
 const JSNAM = () => {
   return (
     <ContentArea>
       <Title>슈게이징</Title>
       <CardContainer>
-        <Card>
-          <img src={image1} alt="이미지" className="main-image"></img>
-          <img src={btn_add} alt="추가" className="btn_add"></img>
-          <img src={btn_more} alt="추가" className="btn_more"></img>
-          <TextArea>
-            <TextB2>Honey</TextB2>
-            <TextB5>TRPP</TextB5>
-          </TextArea>
-        </Card>
-
-        <Card>
-          <img src={image1} alt="이미지" className="main-image"></img>
-          <img src={btn_add} alt="추가" className="btn_add"></img>
-          <img src={btn_more} alt="추가" className="btn_more"></img>
-          <TextArea>
-            <TextB2>Honey</TextB2>
-            <TextB5>TRPP</TextB5>
-          </TextArea>
-        </Card>
+        <Card image={image1} title="Honey" subtitle="TRPP" />
+        <Card image={image1} title="Honey" subtitle="TRPP" />
       </CardContainer>
     </ContentArea>
   );
