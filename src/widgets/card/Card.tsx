@@ -78,11 +78,7 @@ const TextB5 = styled.div`
  * @param {string} props.title - 카드 타이틀
  * @param {string} props.subtitle - 카드 서브타이틀
  */
-const Card = ({ 
-  image, 
-  title, 
-  subtitle, 
-}) => (
+const Card = ({ image, title, subtitle }) => (
   <CardWrapper>
     <MainImage src={image} alt="이미지" className="main-image" />
     <ActionButton src={btn_add} alt="추가" className="btn_add" />
