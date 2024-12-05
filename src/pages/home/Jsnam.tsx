@@ -16,7 +16,7 @@ import image2 from "app/styles/img/roundimg.png";
 
 // 전체 컨테이너 스타일
 const ContentArea = styled.div`
-  width: 1280px;
+  width: 100%;
   height: 2000px;
   margin: 0 auto;
   margin-left: 120px;

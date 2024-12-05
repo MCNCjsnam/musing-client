@@ -12,9 +12,6 @@ export const ROUTES = {
     DETAIL: '/detail',
   },
 
-  // jsnam test
-  JSNAM: '/jsnam',
-
   // 컴포넌트 demo용 페이지
   DEMO: '/demo',
 

@@ -12,7 +12,6 @@ import { ROUTES } from 'shared/config/routes';
 export const AppRouter = () => {
   return (
     <Routes>
-      <Route path={ROUTES.JSNAM} element={<JSNAM />} />
       <Route path={ROUTES.HOME} element={<Home />} />
       <Route path={ROUTES.COMMUNITY.COMMUNITY} element={<Community />} />
       <Route path={ROUTES.DEMO} element={<Demo />} />

@@ -1,6 +1,12 @@
 import styled from '@emotion/styled';
-import btn_add from "app/styles/img/btn-add.png";
-import btn_more from "app/styles/img/btn-more.png";
+import btn_add from "shared/ui/card/img/btn-add.png";
+import btn_more from "shared/ui/card/img/btn-more.png";
+
+// 좋아요한 음악 전체영역
+const HotContainer = styled.div`
+  width: 1280px;
+  height: 364px;
+`;
 
 const MainImageWrapper = styled.div`
   position: relative;
@@ -97,22 +103,24 @@ const TextB5 = styled.div`
 `;
 
 const Card = ({ image, title, subtitle }) => (
-  <CardWrapper>
-    <MainImageWrapper>
-      <MainImage src={image} alt="이미지" className="main-image" />
-      <Border />
-      <TextButtonArea>
-        <TextArea>
-          <TextT2 className='text-t2'>{title}</TextT2>
-          <TextB5 className='text-b5'>{subtitle}</TextB5>
-        </TextArea>
-        <ActionButtonWrapper>
-          <ActionButton src={btn_add} alt="추가" className="btn_add" />
-          <ActionButton src={btn_more} alt="더보기" className="btn_more" />
-        </ActionButtonWrapper>
-      </TextButtonArea>
-    </MainImageWrapper>
-  </CardWrapper>
+  <HotContainer>
+    <CardWrapper>
+      <MainImageWrapper>
+        <MainImage src={image} alt="이미지" className="main-image" />
+        <Border />
+        <TextButtonArea>
+          <TextArea>
+            <TextT2 className='text-t2'>{title}</TextT2>
+            <TextB5 className='text-b5'>{subtitle}</TextB5>
+          </TextArea>
+          <ActionButtonWrapper>
+            <ActionButton src={btn_add} alt="추가" className="btn_add" />
+            <ActionButton src={btn_more} alt="더보기" className="btn_more" />
+          </ActionButtonWrapper>
+        </TextButtonArea>
+      </MainImageWrapper>
+    </CardWrapper>
+  </HotContainer>
 );
 
 export default Card;
