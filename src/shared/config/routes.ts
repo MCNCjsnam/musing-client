@@ -13,7 +13,17 @@ export const ROUTES = {
   },
 
   // jsnam test
-  JSNAM: '/'
+  JSNAM: '/jsnam',
+
+  // 컴포넌트 demo용 페이지
+  DEMO: '/demo',
+
+  // 인증 관련 라우트
+  // AUTH: {
+  //   LOGIN: '/login',
+  //   REGISTER: '/register',
+  //   FORGOT_PASSWORD: '/forgot-password',
+  // }
 } as const;
 
 // 라우트 타입 추출 (선택사항)
