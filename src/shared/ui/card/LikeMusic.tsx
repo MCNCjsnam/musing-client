@@ -57,7 +57,6 @@ const LikeMusingImageWrapper = styled.div`
 
 // 이미지
 const LikeMusingImage = styled.div`
-  position: relative;
   width: 100%;
   height: 100%;
   border-radius: 12px;
