@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import { commonStyles } from 'shared/styles/common';
+import { CommunityMusicInfo } from 'shared/ui/Main/types';
 
 // 게시판 전체영역
 const CommunityContainer = styled.div`
@@ -45,13 +46,14 @@ const PlayListBlock = styled.div`
   border-radius: 8px;
 `;
 
-const PlayListImage = styled.div`
+const PlayListImage = styled.img`
   width: 100%;
   height: 100%;
   background-image: url(${(props) => props.src});
   background-size: cover;
   background-position: center;
   border-radius: 8px;
+  filter: blur(20px);
 `;
 
 const CommunityListBlock = styled.div`
@@ -170,143 +172,52 @@ const StyledHr = styled.hr`
   margin-bottom: 10px;
 `;
 
-/**
- * 재사용 가능한 카드 컴포넌트
- * @param {Object} props - 카드 컴포넌트 props
- * @param {string} props.image - 카드 이미지 경로
- * @param {string} props.title - 카드 타이틀
- * @param {string} props.subtitle - 카드 서브타이틀
- */
-const List = ({ image, title, subtitle }) => (
-  <CommunityContainer>
-    <TitleBlock>
-      <PageTitle>음악 추천 게시판</PageTitle>
-      <SubTitle>취향을 발견하는 또다른 방법</SubTitle>
-    </TitleBlock>
+interface CommunityMusicProps {
+  CommunityMusicInfo: CommunityMusicInfo;
+}
 
-    <CommunityBlock>
-      <PlayListBlock>
-        <PlayListImage src={image}></PlayListImage>
-      </PlayListBlock>
+const CommunityMusic = ({ CommunityMusicInfo }: CommunityMusicProps) => {
+  return (
+    <CommunityContainer>
+      <TitleBlock>
+        <PageTitle>음악 추천 게시판</PageTitle>
+        <SubTitle>취향을 발견하는 또다른 방법</SubTitle>
+      </TitleBlock>
 
-      <CommunityListBlock>
-        <CommunityListWrapper>
-          <CommunityList>
-            <ListDate>17:00</ListDate>
-            <ListImg src={image} alt="이미지"></ListImg>
-            <ListContent>
-              <ContentInfo>
-                <ContentsTitle>Highway Tune · Greta Van Fleet</ContentsTitle>
-                <ContentsDescription>max-witdh 396이고 초과시 ...으로 나오도록 설정</ContentsDescription>
-              </ContentInfo>
+      <CommunityBlock>
+        <PlayListBlock>
+          <PlayListImage src={CommunityMusicInfo.img} />
+        </PlayListBlock>
 
-              <ActivityInfo>
-                <ActivityStatus>댓글 7 · 추천 1 · 조회 14</ActivityStatus>
-                <ActivityName>여기도 max-width 200으로 초과시</ActivityName>
-              </ActivityInfo>
-            </ListContent>
-          </CommunityList>
-        </CommunityListWrapper>
-        <StyledHr></StyledHr>
+        <CommunityListBlock>
+          {CommunityMusicInfo.communityList.map((item) => (
+            <div key={item.id}>
+              <CommunityListWrapper>
+                <CommunityList>
+                  <ListDate>{item.date}</ListDate>
+                  <ListImg src={item.img} alt={item.title} />
+                  <ListContent>
+                    <ContentInfo>
+                      <ContentsTitle>{item.title}</ContentsTitle>
+                      <ContentsDescription>{item.description}</ContentsDescription>
+                    </ContentInfo>
 
-        <CommunityListWrapper>
-          <CommunityList>
-            <ListDate>17:00</ListDate>
-            <ListImg src={image} alt="이미지"></ListImg>
-            <ListContent>
-              <ContentInfo>
-                <ContentsTitle>Highway Tune · Greta Van Fleet</ContentsTitle>
-                <ContentsDescription>max-witdh 396이고 초과시 ...으로 나오도록 설정</ContentsDescription>
-              </ContentInfo>
+                    <ActivityInfo>
+                      <ActivityStatus>
+                        댓글 {item.comment} · 추천 {item.recommend} · 조회 {item.views}
+                      </ActivityStatus>
+                      <ActivityName>{item.user}</ActivityName>
+                    </ActivityInfo>
+                  </ListContent>
+                </CommunityList>
+              </CommunityListWrapper>
+              <StyledHr />
+            </div>
+          ))}
+        </CommunityListBlock>
+      </CommunityBlock>
+    </CommunityContainer>
+  );
+};
 
-              <ActivityInfo>
-                <ActivityStatus>댓글 7 · 추천 1 · 조회 14</ActivityStatus>
-                <ActivityName>여기도 max-width 200으로 초과시</ActivityName>
-              </ActivityInfo>
-            </ListContent>
-          </CommunityList>
-        </CommunityListWrapper>
-        <StyledHr></StyledHr>
-
-        <CommunityListWrapper>
-          <CommunityList>
-            <ListDate>17:00</ListDate>
-            <ListImg src={image} alt="이미지"></ListImg>
-            <ListContent>
-              <ContentInfo>
-                <ContentsTitle>Highway Tune · Greta Van Fleet</ContentsTitle>
-                <ContentsDescription>max-witdh 396이고 초과시 ...으로 나오도록 설정</ContentsDescription>
-              </ContentInfo>
-
-              <ActivityInfo>
-                <ActivityStatus>댓글 7 · 추천 1 · 조회 14</ActivityStatus>
-                <ActivityName>여기도 max-width 200으로 초과시</ActivityName>
-              </ActivityInfo>
-            </ListContent>
-          </CommunityList>
-        </CommunityListWrapper>
-        <StyledHr></StyledHr>
-
-        <CommunityListWrapper>
-          <CommunityList>
-            <ListDate>17:00</ListDate>
-            <ListImg src={image} alt="이미지"></ListImg>
-            <ListContent>
-              <ContentInfo>
-                <ContentsTitle>Highway Tune · Greta Van Fleet</ContentsTitle>
-                <ContentsDescription>max-witdh 396이고 초과시 ...으로 나오도록 설정</ContentsDescription>
-              </ContentInfo>
-
-              <ActivityInfo>
-                <ActivityStatus>댓글 7 · 추천 1 · 조회 14</ActivityStatus>
-                <ActivityName>여기도 max-width 200으로 초과시</ActivityName>
-              </ActivityInfo>
-            </ListContent>
-          </CommunityList>
-        </CommunityListWrapper>
-        <StyledHr></StyledHr>
-
-        <CommunityListWrapper>
-          <CommunityList>
-            <ListDate>17:00</ListDate>
-            <ListImg src={image} alt="이미지"></ListImg>
-            <ListContent>
-              <ContentInfo>
-                <ContentsTitle>Highway Tune · Greta Van Fleet</ContentsTitle>
-                <ContentsDescription>max-witdh 396이고 초과시 ...으로 나오도록 설정</ContentsDescription>
-              </ContentInfo>
-
-              <ActivityInfo>
-                <ActivityStatus>댓글 7 · 추천 1 · 조회 14</ActivityStatus>
-                <ActivityName>남재상</ActivityName>
-              </ActivityInfo>
-            </ListContent>
-          </CommunityList>
-        </CommunityListWrapper>
-      </CommunityListBlock>
-    </CommunityBlock>
-  </CommunityContainer>
-
-  /* <ListColumArea>
-    <ListColum>
-      <ListDate>17:00</ListDate>
-      <ListImg src={image} alt="이미지"></ListImg>
-      <ListContents>
-        <ListContent1>
-          <ContentsTitle1>{title}</ContentsTitle1>
-          <ContentsTitle2>{subtitle}</ContentsTitle2>
-        </ListContent1>
-
-        <ListContent2>
-          <ContentsTitle3>
-            <span>댓글 7 · 추천 1 · 조회 14</span>
-          </ContentsTitle3>
-          <ContentsTitle4>여기도 max-width 200으로 초과시</ContentsTitle4>
-        </ListContent2>
-      </ListContents>
-    </ListColum>
-  </ListColumArea>
-    <StyledHr /> */
-);
-
-export default List;
+export default CommunityMusic;

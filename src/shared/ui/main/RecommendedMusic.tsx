@@ -1,6 +1,8 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
+import { RecommendedMusicList } from 'shared/ui/Main/types';
+
 // 추천아티스트 전체영역
 const RcmContainer = styled.div`
   width: 1280px;
@@ -84,35 +86,30 @@ const GenreTitle = styled.div`
   margin-bottom: 10px;
 `;
 
-const Card = ({ image, title }) => (
-  <RcmContainer>
-    <RcmBlock>
-      <RcmTitleBlock>
-        <RcmTitle>인디</RcmTitle>
-        <RcmTitle2>를 좋아한 태리님에게 추천하는 아티스트</RcmTitle2>
-      </RcmTitleBlock>
-    </RcmBlock>
-    <GenreMusingWrapper>
-      <GenreMusingImage src={image} alt="추천 이미지" />
-      <GenreTextBlock>
-        <GenreTitle>{title}</GenreTitle>
-      </GenreTextBlock>
-    </GenreMusingWrapper>
+interface RecommendedMusicListProps {
+  RecommendedMusicList: RecommendedMusicList;
+}
 
-    <GenreMusingWrapper>
-      <GenreMusingImage src={image} alt="추천 이미지" />
-      <GenreTextBlock>
-        <GenreTitle>Midnight jogging c</GenreTitle>
-      </GenreTextBlock>
-    </GenreMusingWrapper>
+const RecommendedMusic = ({ RecommendedMusicList }: RecommendedMusicListProps) => {
+  return (
+    <RcmContainer>
+      <RcmBlock>
+        <RcmTitleBlock>
+          <RcmTitle>인디</RcmTitle>
+          <RcmTitle2>를 좋아한 태리님에게 추천하는 아티스트</RcmTitle2>
+        </RcmTitleBlock>
+      </RcmBlock>
 
-    <GenreMusingWrapper>
-      <GenreMusingImage src={image} alt="추천 이미지" />
-      <GenreTextBlock>
-        <GenreTitle>모스크바서핑클럽</GenreTitle>
-      </GenreTextBlock>
-    </GenreMusingWrapper>
-  </RcmContainer>
-);
+      {RecommendedMusicList.map((item, index) => (
+        <GenreMusingWrapper key={index}>
+          <GenreMusingImage src={item.img} alt="추천 이미지" />
+          <GenreTextBlock>
+            <GenreTitle>{item.name}</GenreTitle>
+          </GenreTextBlock>
+        </GenreMusingWrapper>
+      ))}
+    </RcmContainer>
+  );
+};
 
-export default Card;
+export default RecommendedMusic;
