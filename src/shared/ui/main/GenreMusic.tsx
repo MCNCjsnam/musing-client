@@ -119,6 +119,7 @@ const limitText = css`
 // 장르음악 타이틀
 const GenreTitle = styled.div`
   ${({ theme }) => theme.fonts.wantedSans.B2};
+  color: ${({ theme }) => theme.colors.white};
   ${limitText};
 `;
 

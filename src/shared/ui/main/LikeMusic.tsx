@@ -103,6 +103,7 @@ const LikeTextBlock = styled.div`
 
 const LikeTitle = styled.div`
   ${({ theme }) => theme.fonts.wantedSans.B6};
+  color: ${({ theme }) => theme.colors.white};
   opacity: 0.8;
   margin-bottom: 4px;
 `;
