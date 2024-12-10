@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import arrow2 from 'shared/assets/image/main/arrow 2.png';
 import btn_add from 'shared/assets/image/main/btn-add.png';
 import btn_more from 'shared/assets/image/main/btn-more.png';
-
 import { LikeMusicList } from 'shared/ui/Main/types';
 
 // 좋아요한 음악 전체영역

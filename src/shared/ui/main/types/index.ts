@@ -1,26 +1,26 @@
-// 장르의 음악 - Single item type
-export type GenreMusicListItem = {
+// 장르의 음악
+export type GenreMusicList = {
   id: string;
   title: string;
   name: string;
   img: string;
-};
+}[];
 
-// 좋아요한 음악 - Single item type
-export type LikeMusicListItem = {
+// 좋아요한 음악
+export type LikeMusicList = {
   id: string;
   title: string;
   name: string;
   img: string;
-};
+}[];
 
-// 핫한 음악 - Single item type
-export type HotMusicListItem = {
+// 핫한 음악
+export type HotMusicList = {
   id: string;
   title: string;
   name: string;
   img: string;
-};
+}[];
 
 // 음악 추천 게시판 리스트
 export type CommunityList = {
@@ -44,17 +44,17 @@ export type CommunityMusicInfo = {
   communityList: CommunityList[];
 };
 
-// 추천 음악 리스트 - Single item type
-export type RecommendedMusicListItem = {
+// 추천 음악 리스트
+export type RecommendedMusicList = {
   id: string;
   name: string;
   img: string;
-};
+}[];
 
 export type MainItem = {
-  GenreMusicList: GenreMusicListItem[];
-  LikeMusicList: LikeMusicListItem[];
-  HotMusicList: HotMusicListItem[];
+  GenreMusicList: GenreMusicList;
+  LikeMusicList: LikeMusicList;
+  HotMusicList: HotMusicList;
   CommunityMusicInfo: CommunityMusicInfo;
-  RecommendedMusicList: RecommendedMusicListItem[];
+  RecommendedMusicList: RecommendedMusicList;
 };
