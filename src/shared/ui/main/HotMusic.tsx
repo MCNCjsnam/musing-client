@@ -161,6 +161,14 @@ const SliderWrapper = styled(Slider)`
     width: 296px !important;
   }
 
+  // 페이지네이션 위치를 오른쪽으로 이동
+  .slick-dots {
+    right: 0; // 오른쪽 정렬
+    width: auto;
+    display: flex;
+    justify-content: flex-end;
+  }
+
   //페이지 스타일 수정
   .slick-dots li button:before {
     color: ${({ theme }) => theme.colors.primary1};

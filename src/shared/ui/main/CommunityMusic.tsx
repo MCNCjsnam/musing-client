@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import arrow3 from 'shared/assets/image/main/arrow 3.png';
 import { commonStyles } from 'shared/styles/common';
 import { CommunityMusicInfo } from 'shared/ui/Main/types';
 
@@ -44,9 +45,18 @@ const PlayListBlock = styled.div`
   width: 376px;
   height: 512px;
   border-radius: 8px;
+  position: relative;
 `;
 
-const PlayListImage = styled.img`
+const PlayListWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+`;
+
+const PlayListImageBackGround = styled.img`
   width: 100%;
   height: 100%;
   background-image: url(${(props) => props.src});
@@ -54,13 +64,71 @@ const PlayListImage = styled.img`
   background-position: center;
   border-radius: 8px;
   filter: blur(20px);
+  overflow: hidden;
+  z-index: 10;
+`;
+
+const PlayListTitle = styled.div`
+  position: absolute;
+  top: 24px;
+  left: 32px;
+  opacity: 64%;
+  color: ${({ theme }) => theme.colors.white};
+  ${({ theme }) => theme.fonts.wantedSans.B5};
+  z-index: 11;
+`;
+
+const PlayListImage = styled.img`
+  position: absolute;
+  top: 64px;
+  left: 32px;
+  width: 312px;
+  height: 312px;
+  background-image: url(${(props) => props.src});
+  z-index: 11;
+`;
+
+const PlayListInfoBlock = styled.div`
+  position: absolute;
+  left: 32px;
+  bottom: 32px;
+  width: 312px;
+  height: 80px;
+  z-index: 11;
+`;
+
+const PlayListInfoButton = styled.img`
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  right: 32px;
+  bottom: 32px;
+  background-image: url(${(props) => props.src});
+  background-size: cover;
+  background-position: center;
+  z-index: 11;
+  cursor: pointer;
+`;
+
+const PlayListInfoTitle = styled.div`
+  width: 268px;
+  opacity: 80%;
+  color: ${({ theme }) => theme.colors.white};
+  ${({ theme }) => theme.fonts.wantedSans.B6};
+  margin-bottom: 8px;
+`;
+
+const PlayListInfoDescription = styled.div`
+  width: 268px;
+  color: ${({ theme }) => theme.colors.white};
+  ${({ theme }) => theme.fonts.wantedSans.B1};
 `;
 
 const CommunityListBlock = styled.div`
   width: 832px;
   height: 512px;
   display: flex;
-  gap: 4px;
+  /* gap: 4px; */
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors[500]};
   padding: 24px;
@@ -99,6 +167,7 @@ const ListDate = styled.div`
   text-align: center;
   ${({ theme }) => theme.fonts.wantedSans.B4};
   color: ${({ theme }) => theme.colors.primary2};
+  color: ${({ theme }) => theme.colors[200]};
 `;
 
 const ListImg = styled.img`
@@ -130,9 +199,6 @@ const ContentsDescription = styled.div`
   color: ${({ theme }) => theme.colors.white};
   max-width: 396px;
   ${commonStyles.limitText};
-  /* overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap; */
 `;
 
 const ActivityInfo = styled.div`
@@ -186,11 +252,22 @@ const CommunityMusic = ({ CommunityMusicInfo }: CommunityMusicProps) => {
 
       <CommunityBlock>
         <PlayListBlock>
-          <PlayListImage src={CommunityMusicInfo.img} />
+          <PlayListTitle>인기 플레이리스트</PlayListTitle>
+          <PlayListWrapper>
+            <PlayListImageBackGround src={CommunityMusicInfo.img} />
+          </PlayListWrapper>
+          <PlayListImage src={CommunityMusicInfo.img}></PlayListImage>
+          <PlayListInfoBlock>
+            <PlayListInfoTitle>눈 · 자이언티</PlayListInfoTitle>
+            <PlayListInfoDescription>
+              첫눈이 오면 제일 먼저<br></br> 듣고 싶은 노래
+            </PlayListInfoDescription>
+          </PlayListInfoBlock>
+          <PlayListInfoButton src={arrow3}></PlayListInfoButton>
         </PlayListBlock>
 
         <CommunityListBlock>
-          {CommunityMusicInfo.communityList.map((item) => (
+          {CommunityMusicInfo.communityList.map((item, index) => (
             <div key={item.id}>
               <CommunityListWrapper>
                 <CommunityList>
@@ -211,7 +288,7 @@ const CommunityMusic = ({ CommunityMusicInfo }: CommunityMusicProps) => {
                   </ListContent>
                 </CommunityList>
               </CommunityListWrapper>
-              <StyledHr />
+              {index < 4 ? <StyledHr /> : ''}
             </div>
           ))}
         </CommunityListBlock>

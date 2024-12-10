@@ -1,3 +1,5 @@
+import styled from '@emotion/styled';
+
 import CommunityMusic from './CommunityMusic';
 import { MAIN_ITEM } from './constants';
 import GenreMusic from './GenreMusic';
@@ -6,18 +8,35 @@ import LikeMusic from './LikeMusic';
 import RecommendedMusic from './RecommendedMusic';
 
 export const Main = () => {
+  const MainContents = styled.div`
+    width: 100%;
+  `;
+
+  const ComponentWrapper = styled.div<{ marginBottom?: number }>`
+    margin-bottom: ${({ marginBottom }) => (marginBottom ? `${marginBottom}px` : '0')};
+  `;
+
   return (
-    <>
-      <GenreMusic GenreMusicList={MAIN_ITEM.GenreMusicList} />
+    <MainContents>
+      <ComponentWrapper marginBottom={104}>
+        <GenreMusic GenreMusicList={MAIN_ITEM.GenreMusicList} />
+      </ComponentWrapper>
 
-      <LikeMusic LikeMusicList={MAIN_ITEM.LikeMusicList} />
+      <ComponentWrapper marginBottom={144}>
+        <LikeMusic LikeMusicList={MAIN_ITEM.LikeMusicList} />
+      </ComponentWrapper>
 
-      <HotMusic HotMusicList={MAIN_ITEM.HotMusicList} />
+      <ComponentWrapper marginBottom={124}>
+        <HotMusic HotMusicList={MAIN_ITEM.HotMusicList} />
+      </ComponentWrapper>
 
-      <CommunityMusic CommunityMusicInfo={MAIN_ITEM.CommunityMusicInfo} />
+      <ComponentWrapper marginBottom={120}>
+        <CommunityMusic CommunityMusicInfo={MAIN_ITEM.CommunityMusicInfo} />
+      </ComponentWrapper>
 
-      <RecommendedMusic RecommendedMusicList={MAIN_ITEM.RecommendedMusicList} />
-    </>
+      <ComponentWrapper>
+        <RecommendedMusic RecommendedMusicList={MAIN_ITEM.RecommendedMusicList} />
+      </ComponentWrapper>
+    </MainContents>
   );
 };
-// 104 144 124 120
