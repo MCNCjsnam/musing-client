@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import moment from 'moment';
+moment.locale('ko');
 
 import arrow3 from 'shared/assets/image/main/arrow 3.png';
 import { commonStyles } from 'shared/styles/common';
@@ -157,7 +159,7 @@ const CommunityList = styled.div`
   align-items: center;
 `;
 
-const ListDate = styled.div`
+const ListDate = styled.div<{ isRecent: boolean }>`
   width: 64px;
   height: 64px;
   margin-right: 16px;
@@ -166,8 +168,7 @@ const ListDate = styled.div`
   align-items: center;
   text-align: center;
   ${({ theme }) => theme.fonts.wantedSans.B4};
-  color: ${({ theme }) => theme.colors.primary2};
-  color: ${({ theme }) => theme.colors[200]};
+  color: ${({ theme, isRecent }) => (isRecent ? theme.colors.primary2 : theme.colors[200])};
 `;
 
 const ListImg = styled.img`
@@ -267,30 +268,53 @@ const CommunityMusic = ({ CommunityMusicInfo }: CommunityMusicProps) => {
         </PlayListBlock>
 
         <CommunityListBlock>
-          {CommunityMusicInfo.communityList.map((item, index) => (
-            <div key={item.id}>
-              <CommunityListWrapper>
-                <CommunityList>
-                  <ListDate>{item.date}</ListDate>
-                  <ListImg src={item.img} alt={item.title} />
-                  <ListContent>
-                    <ContentInfo>
-                      <ContentsTitle>{item.title}</ContentsTitle>
-                      <ContentsDescription>{item.description}</ContentsDescription>
-                    </ContentInfo>
+          {CommunityMusicInfo.communityList.map((item, index) => {
+            const itemDate = moment(item.date);
 
-                    <ActivityInfo>
-                      <ActivityStatus>
-                        댓글 {item.comment} · 추천 {item.recommend} · 조회 {item.views}
-                      </ActivityStatus>
-                      <ActivityName>{item.user}</ActivityName>
-                    </ActivityInfo>
-                  </ListContent>
-                </CommunityList>
-              </CommunityListWrapper>
-              {index < 4 ? <StyledHr /> : ''}
-            </div>
-          ))}
+            const now = moment();
+            const diffDays = now.diff(itemDate, 'days');
+            const diffWeeks = now.diff(itemDate, 'weeks');
+            const diffYears = now.diff(itemDate, 'years');
+
+            let formattedDate;
+            if (diffDays < 1) {
+              formattedDate = itemDate.format('HH:mm');
+            } else if (diffDays < 7) {
+              formattedDate = `${diffDays}일 전`;
+            } else if (diffWeeks < 4) {
+              formattedDate = `${diffWeeks}주 전`;
+            } else if (diffYears < 1) {
+              const diffMonths = now.diff(itemDate, 'months');
+              formattedDate = `${diffMonths}개월 전`;
+            } else {
+              formattedDate = `${diffYears}년 전`;
+            }
+
+            return (
+              <div key={item.id}>
+                <CommunityListWrapper>
+                  <CommunityList>
+                    <ListDate isRecent={diffDays < 1}>{formattedDate}</ListDate>
+                    <ListImg src={item.img} alt={item.title} />
+                    <ListContent>
+                      <ContentInfo>
+                        <ContentsTitle>{item.title}</ContentsTitle>
+                        <ContentsDescription>{item.description}</ContentsDescription>
+                      </ContentInfo>
+
+                      <ActivityInfo>
+                        <ActivityStatus>
+                          댓글 {item.comment} · 추천 {item.recommend} · 조회 {item.views}
+                        </ActivityStatus>
+                        <ActivityName>{item.user}</ActivityName>
+                      </ActivityInfo>
+                    </ListContent>
+                  </CommunityList>
+                </CommunityListWrapper>
+                {index < 4 ? <StyledHr /> : ''}
+              </div>
+            );
+          })}
         </CommunityListBlock>
       </CommunityBlock>
     </CommunityContainer>

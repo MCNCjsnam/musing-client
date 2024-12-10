@@ -149,6 +149,8 @@ interface LikeMusicListProps {
 
 const LikeMusic = ({ LikeMusicList }: LikeMusicListProps) => {
   const limitedLikeMusicList = LikeMusicList.slice(0, 4);
+  const limitedLikeMusicList2 = LikeMusicList.slice(4, 7);
+  const limitedLikeMusicList3 = LikeMusicList.slice(7, 10);
 
   return (
     <LikeContainer>
@@ -173,17 +175,21 @@ const LikeMusic = ({ LikeMusicList }: LikeMusicListProps) => {
 
         <LikeMore>
           <LikeMoreList>
-            <LikeMusingImageWrapper className="small">
-              <LikeMusingImage src={limitedLikeMusicList[0]?.img} alt="이미지" className="main-image" />
-              <LikeButton src={btn_more} alt="더보기" className="btn_more small" />
-            </LikeMusingImageWrapper>
+            {limitedLikeMusicList2.map((item, index) => (
+              <LikeMusingImageWrapper className="small" key={index}>
+                <LikeMusingImage src={item.img} alt="이미지" className="main-image" />
+                <LikeButton src={btn_more} alt="더보기" className="btn_more small" />
+              </LikeMusingImageWrapper>
+            ))}
           </LikeMoreList>
 
           <LikeMoreList>
-            <LikeMusingImageWrapper className="small">
-              <LikeMusingImage src={limitedLikeMusicList[1]?.img} alt="이미지" className="main-image" />
-              <LikeButton src={btn_more} alt="더보기" className="btn_more small" />
-            </LikeMusingImageWrapper>
+            {limitedLikeMusicList3.map((item, index) => (
+              <LikeMusingImageWrapper className="small" key={index}>
+                <LikeMusingImage src={item.img} alt="이미지" className="main-image" />
+                <LikeButton src={btn_more} alt="더보기" className="btn_more small" />
+              </LikeMusingImageWrapper>
+            ))}
             <Arrow src={arrow2}></Arrow>
           </LikeMoreList>
         </LikeMore>
