@@ -20,7 +20,6 @@ const HeaderBlock = styled.header`
   padding: 0 32px;
   background: ${({ theme }) => theme.colors[800]};
   opacity: 80%;
-  z-index: 9999;
 `;
 
 const LogoBox = styled.div`
