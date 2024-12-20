@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 
+import StarActive from 'shared/assets/image/icons/icon-star-active2.svg?react';
+import StarDefalut from 'shared/assets/image/icons/icon-star.svg?react';
 import image1 from 'shared/assets/image/main/image1.png';
 import { commonStyles } from 'shared/styles/common';
 
@@ -82,6 +84,28 @@ const CommunityAction = styled.div`
   width: 140px;
   height: 70px;
 `;
+
+const CommunityTagBlock = styled.div`
+  width: 140px;
+  height: 34px;
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+`
+
+const CommunityTag = styled.div`
+  width: 68px;
+  height: 33px;
+  border-radius: 4px;
+  background-color: ${({ theme }) => theme.colors[400]};
+  /* color: ${({ theme }) => theme.colors.secondary2}; */
+  color: ${({ theme }) => theme.colors.primary1};
+  ${({ theme }) => theme.fonts.wantedSans.B6};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
 const CommunityPagenation = styled.div`
   color: ${({ theme, isActive }) => (isActive ? theme.colors[100] : theme.colors[200])};
@@ -186,7 +210,7 @@ const CommunitySearchSelectWrapper = () => {
 const RecommendedPostList = () => {
   const [activePage, setActivePage] = useState(1);
 
-  const handlePageClick = (pageNumber) => {
+  const handlePageClick = (pageNumber: SetStateAction<number>) => {
     setActivePage(pageNumber);
   };
   return (
@@ -208,7 +232,16 @@ const RecommendedPostList = () => {
                   텍스트 초과 시 줄임표 뜨도록!!!!!!!!
                 </CommunitySongDescription>
               </CommunityInfo>
-              <CommunityAction></CommunityAction>
+              <CommunityAction>
+                <StarActive></StarActive>
+                <StarDefalut></StarDefalut>
+
+
+                <CommunityTagBlock>
+                  <CommunityTag>K-POP</CommunityTag>
+                  <CommunityTag>귀여운</CommunityTag>
+                </CommunityTagBlock>
+              </CommunityAction>
             </CommuityContent>
           </CommunityItem>
         ))}
